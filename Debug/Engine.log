@@ -1,0 +1,4 @@
+﻿  main.cpp
+H:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xkeycheck.h(269,1): warning C4005: 'inline': macro redefinition
+C:\Users\Wizard\Desktop\Engine\src\linmath.h(7): message : see previous definition of 'inline'
+H:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xkeycheck.h(271,1): fatal error C1189: #error:  The C++ Standard Library forbids macroizing the keyword "inline". Enable warning C4005 to find the forbidden define.
