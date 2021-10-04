@@ -23,6 +23,7 @@ namespace Core
 		{
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_width, m_height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
+			std::cout << "Loaded " << m_path << std::endl;
 		}
 		else
 		{

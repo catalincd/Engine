@@ -18,6 +18,7 @@ namespace Core
 		m_color = color;
 		m_angle = angle;
 
+		Load();
 		GenerateVertices();
 	}
 
@@ -38,19 +39,30 @@ namespace Core
 		float angleCos = cos(m_angle);
 		vector2 pivot = m_size * m_origin;
 		vector2 secondPivot = m_size * (vector2(1.0f) - m_origin);
-		vector2 absolute_position = m_position - vector2(pivot.x * angleCos - pivot.y * angleSin, pivot.x * angleSin + pivot.y * angleCos);
-		vector2 absolute_position_complete = m_position + vector2(secondPivot.x * angleCos - secondPivot.y * angleSin, secondPivot.x * angleSin + secondPivot.y * angleCos);
+		//vector2 absolute_position = m_position - vector2(pivot.x * angleCos - pivot.y * angleSin, pivot.x * angleSin + pivot.y * angleCos);
+		//vector2 absolute_position_complete = m_position + vector2(secondPivot.x * angleCos - secondPivot.y * angleSin, secondPivot.x * angleSin + secondPivot.y * angleCos);
+	
 		
+
+		vector2 absolute_position = m_position - pivot;
+		vector2 absolute_position_complete = m_position + secondPivot;
+
+		std::cout << "X:" << absolute_position.x << "Y:" << absolute_position.y << std::endl;
+
 		float id = m_texture->GetID();
-		m_vertices[0] = { absolute_position.x, absolute_position.y, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 0.0f, id };
-		m_vertices[1] = { absolute_position_complete.x, absolute_position.y, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 0.0f, id };
-		m_vertices[2] = { absolute_position_complete.x, absolute_position_complete.y, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 1.0f, id };
-		m_vertices[3] = { absolute_position.x, absolute_position_complete.y, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 1.0f, id };
+
+		GLfloat newVertices[] = 
+		{   absolute_position.x,		  absolute_position.y, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 0.0f, id,
+			absolute_position_complete.x, absolute_position.y, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 1.0f, id,
+			absolute_position_complete.x, absolute_position_complete.y, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 1.0f, id,
+			absolute_position.x,		  absolute_position_complete.y, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 0.0f, id};
+
+		std::copy(newVertices, newVertices + 36, m_vertices);
 	}
 	
-	const Vertex& Sprite::GetVertex(int id)
+	GLfloat* Sprite::GetVertices()
 	{
-		return m_vertices[id];
+		return m_vertices;
 	}
 
 

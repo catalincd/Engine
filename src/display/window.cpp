@@ -14,8 +14,8 @@ namespace Core
 		if (!glfwInit())
 			std::cout << "Failed to initialize GLFW" << std::endl;
 
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 
 		m_window = glfwCreateWindow(m_width, m_height, m_title, NULL, NULL);
 		if (!m_window)

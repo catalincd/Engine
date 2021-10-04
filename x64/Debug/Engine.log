@@ -1,7 +1,2 @@
-﻿  main.cpp
-  renderer.cpp
-C:\Users\Wizard\Desktop\Engine\src\renderer\renderer.cpp(30,16): error C2065: 'shaderManager': undeclared identifier
-C:\Users\Wizard\Desktop\Engine\src\renderer\renderer.cpp(31,3): error C2065: 'shaderManager': undeclared identifier
-  sprite.cpp
-C:\Users\Wizard\Desktop\Engine\src\texture\sprite.cpp(44,12): warning C4244: 'initializing': conversion from 'GLuint' to 'float', possible loss of data
-  Generating Code...
+﻿  renderer.cpp
+  Engine.vcxproj -> C:\Users\Wizard\Desktop\Engine\x64\Debug\Engine.exe

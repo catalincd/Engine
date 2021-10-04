@@ -7,6 +7,17 @@ Core::Renderer G_Renderer;
 
 namespace Core
 {
+	void printVertexArray(GLfloat* arr)
+	{
+		for (int i = 0; i < 36; i++)
+		{
+			if (!(i % 9))
+				std::cout << std::endl;
+			std::cout << arr[i] << ' ';
+		}
+		std::cout << std::endl;
+	}
+
 	void Renderer::Init(Window* window)
 	{
 		m_window = window;
@@ -23,7 +34,7 @@ namespace Core
 
 		glGenBuffers(1, &VBO);
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 1024, nullptr, GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 1024, m_vertices, GL_DYNAMIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, position));
@@ -38,29 +49,42 @@ namespace Core
 		glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, textureId));
 
 		m_vertices = new GLfloat[TOTAL_FLOATS];
+
+		for (int i = 0; i < 1024; i++)
+		{
+			for (int t = 0; t < 6; t++)
+			{
+				indices[i * 6 + t] = defaultIndices[t] + 4 * i;
+			}
+		}
+
+		glGenBuffers(1, &IBO);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_DYNAMIC_DRAW);
 	}
 
-
-	void Renderer::SubmitVertex(const Vertex& v)
-	{
-		GLfloat* data = new GLfloat[9];
-
-		float q = v.position.x;
-	}
 
 	void Renderer::SubmitSprite(Sprite* sprite)
 	{
-		SubmitVertex(sprite->GetVertex(0));
-		SubmitVertex(sprite->GetVertex(1));
-		SubmitVertex(sprite->GetVertex(2));
-		SubmitVertex(sprite->GetVertex(3));
-		
+
+
+
+		GLfloat* vertices = sprite->GetVertices();
+		printVertexArray(vertices);
+		std::copy(vertices, vertices + 36, m_vertices+lastVertex);
+
+		lastVertex += 36;
+		SpritesNum++;
 	}
+
+	
 
 	void Renderer::Flush()
 	{
+		
+
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(m_vertices), &m_vertices[0]);
+		//glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(GLfloat) * 36 * SpritesNum, m_vertices);
 		
 		int width, height;
 		glfwGetFramebufferSize(m_window->Get(), &width, &height);
@@ -71,8 +95,8 @@ namespace Core
 
 
 
-
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, 0);
+		glBindVertexArray(VAO);
+		glDrawElements(GL_TRIANGLES, 6 * SpritesNum, GL_UNSIGNED_SHORT, 0);
 
 		SpritesNum = 0;
 		lastVertex = 0;

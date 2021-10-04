@@ -3,6 +3,9 @@
 #include "../buffers/buffers.h"
 #include "texture.h"
 
+#define MAX_VERTICES 2048
+#define FLOATS_PER_VERTEX 9
+#define TOTAL_FLOATS MAX_VERTICES*FLOATS_PER_VERTEX
 
 namespace Core
 {
@@ -15,7 +18,7 @@ namespace Core
 		float m_angle;
 		std::string m_path;
 		Texture* m_texture;
-		Vertex m_vertices[4];
+		GLfloat m_vertices[4 * FLOATS_PER_VERTEX];
 
 	public:
 		Sprite(std::string path, vector2 position, vector2 size, Color color, float angle);
@@ -26,7 +29,7 @@ namespace Core
 
 		void GenerateVertices();
 
-		const Vertex& GetVertex(int id);
+		GLfloat* GetVertices();
 		
 		void Draw();
 
