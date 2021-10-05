@@ -1,4 +1,5 @@
 #include "filesystem.h"
+#include <cstddef>
 
 namespace Core
 {
@@ -15,5 +16,11 @@ namespace Core
 #endif
 
 		return text;
+	}
+
+	std::string FileSystem::GetFileExtension(std::string path)
+	{
+		std::size_t found = path.find_last_of(".");
+		return (path.substr(found + 1));
 	}
 }

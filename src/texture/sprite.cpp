@@ -1,6 +1,5 @@
 #include "sprite.h"
 #include "../renderer/renderer.h"
-#include "../buffers/buffers.h"
 #include <math.h>
 
 extern Core::Renderer G_Renderer;
@@ -22,6 +21,11 @@ namespace Core
 		GenerateVertices();
 	}
 
+	GLuint Sprite::GetTextureID() const
+	{
+		return m_texture->GetID();
+	}
+
 	void Sprite::SetOrigin(vector2 origin)
 	{
 		m_origin = origin;
@@ -30,7 +34,11 @@ namespace Core
 	void Sprite::Load()
 	{
 		m_texture = new Texture(m_path);
-		m_texture->Load();
+
+		if(FileSystem::GetFileExtension(m_path) == "png")
+			m_texture->Load();
+		else
+			m_texture->LoadJPG();
 	}
 
 	void Sprite::GenerateVertices()
@@ -47,22 +55,19 @@ namespace Core
 		vector2 absolute_position = m_position - pivot;
 		vector2 absolute_position_complete = m_position + secondPivot;
 
-		std::cout << "X:" << absolute_position.x << "Y:" << absolute_position.y << std::endl;
-
 		float id = m_texture->GetID();
 
-		GLfloat newVertices[] = 
-		{   absolute_position.x,		  absolute_position.y, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 0.0f, id,
-			absolute_position_complete.x, absolute_position.y, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 1.0f, id,
-			absolute_position_complete.x, absolute_position_complete.y, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 1.0f, id,
-			absolute_position.x,		  absolute_position_complete.y, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 0.0f, id};
+		m_vertices[0] =	{ absolute_position.x,			absolute_position.y,			0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 0.0f, id };
+		m_vertices[1] = { absolute_position_complete.x, absolute_position.y,			0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 0.0f, id };
+		m_vertices[2] = { absolute_position_complete.x, absolute_position_complete.y, 0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 1.0f, id };
+		m_vertices[3] = { absolute_position.x,			absolute_position_complete.y, 0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 1.0f, id };
 
-		std::copy(newVertices, newVertices + 36, m_vertices);
+		//std::copy(newVertices, newVertices + 4 * FLOATS_PER_VERTEX, m_vertices);
 	}
 	
-	GLfloat* Sprite::GetVertices()
+	Vertex Sprite::GetVertices(int id)
 	{
-		return m_vertices;
+		return m_vertices[id];
 	}
 
 

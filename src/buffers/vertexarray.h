@@ -6,7 +6,7 @@ namespace Core
 {
 	struct Vertex
 	{
-		vec2 position;
+		vec3 position;
 		vec4 color;
 		vec2 texturePosition;
 		float textureId;

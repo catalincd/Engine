@@ -14,8 +14,8 @@ namespace Core
 		if (!glfwInit())
 			std::cout << "Failed to initialize GLFW" << std::endl;
 
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
 		m_window = glfwCreateWindow(m_width, m_height, m_title, NULL, NULL);
 		if (!m_window)
@@ -32,7 +32,8 @@ namespace Core
 		}
 		glfwSwapInterval(1);
 		std::cout << glGetString(GL_VERSION) << std::endl;
-		std::cout << "Initialized window!" << std::endl;		
+		std::cout << "Initialized window!" << std::endl;
+
 	}
 
 	Window::~Window()
@@ -60,11 +61,16 @@ namespace Core
 
 		if (DEBUG)
 		{
-			GLenum err;
-			while ((err = glGetError()) != GL_NO_ERROR)
-			{
-				std::cout << "GL Context error: " << err << std::endl;
-			}
+			CheckForErrors();
+		}
+	}
+
+	void Window::CheckForErrors()
+	{
+		GLenum err;
+		while ((err = glGetError()) != GL_NO_ERROR)
+		{
+			std::cout << "GL Context error: " << err << std::endl;
 		}
 	}
 

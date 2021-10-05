@@ -13,5 +13,6 @@ namespace Core
 		FileSystem() {}
 		static std::string ReadFile(std::string path);
 
+		static std::string GetFileExtension(std::string path);
 	};
 }

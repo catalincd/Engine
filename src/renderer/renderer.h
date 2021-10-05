@@ -4,7 +4,9 @@
 #include "../texture/sprite.h"
 #include "../shaders/ShaderManager.h"
 
-
+#define MAX_VERTICES 2048
+#define FLOATS_PER_VERTEX 10
+#define TOTAL_FLOATS MAX_VERTICES*FLOATS_PER_VERTEX
 
 namespace Core
 {
@@ -14,11 +16,15 @@ namespace Core
 		Window* m_window;
 		ShaderManager m_shaderManager;
 		std::vector<Sprite*> sprites;
-		GLfloat* m_vertices;
+		Vertex m_vertices[2048];
+		
+		int MAX_VERTICES_BYTES_SIZE;
 		int lastVertex;
 		GLuint VAO, VBO, IBO;
 		int SpritesNum = 0;
-		uint indices[1024 * 6];
+		GLushort indices[1024 * 6];
+		int TextureID[1024];
+		GLint samplersLocation;
 		const uint defaultIndices[6] = { 0, 1, 2, 2, 3, 0 };
 	public:
 

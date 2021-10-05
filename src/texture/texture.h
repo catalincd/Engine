@@ -16,6 +16,12 @@ namespace Core
 
 		void Load();
 
+		void LoadJPG();
+
+		void Bind(int slot);
+
+		void Unbind(int slot);
+
 		inline int Width() const
 		{
 			return m_width;

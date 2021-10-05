@@ -22,6 +22,7 @@ namespace Core
 		void Update();
 
 		void AddFunction(Function function);
+		void CheckForErrors();
 		inline GLFWwindow* Get() { return m_window; }
 		inline int GetWidth() { return m_width; }
 		inline int GetHeight() { return m_height; }
