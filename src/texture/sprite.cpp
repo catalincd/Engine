@@ -1,13 +1,13 @@
 #include "sprite.h"
 #include "../renderer/renderer.h"
-#include <math.h>
+#include "../utils/math.h"
 
 extern Core::Renderer G_Renderer;
 
 
 namespace Core
 {
-	
+	Math math;
 
 	Sprite::Sprite(std::string path, vector2 position, vector2 size, Color color = Color(0xFFFFFFFF), float angle = 0)
 	{
@@ -29,6 +29,13 @@ namespace Core
 	void Sprite::SetOrigin(vector2 origin)
 	{
 		m_origin = origin;
+		GenerateVertices();
+	}
+
+	void Sprite::SetColor(Color color)
+	{
+		m_color = color;
+		GenerateVertices();
 	}
 
 	void Sprite::Load()
@@ -43,24 +50,27 @@ namespace Core
 
 	void Sprite::GenerateVertices()
 	{
-		float angleSin = sin(m_angle);
-		float angleCos = cos(m_angle);
 		vector2 pivot = m_size * m_origin;
-		vector2 secondPivot = m_size * (vector2(1.0f) - m_origin);
-		//vector2 absolute_position = m_position - vector2(pivot.x * angleCos - pivot.y * angleSin, pivot.x * angleSin + pivot.y * angleCos);
-		//vector2 absolute_position_complete = m_position + vector2(secondPivot.x * angleCos - secondPivot.y * angleSin, secondPivot.x * angleSin + secondPivot.y * angleCos);
-	
+		vector2 secondPivot = m_size * (vector2(1.0f) - m_origin);	
 		
 
-		vector2 absolute_position = m_position - pivot;
-		vector2 absolute_position_complete = m_position + secondPivot;
+		vector2 topLeft = m_position - pivot;
+		vector2 bottomRight = m_position + secondPivot;
+		vector2 topRight = vector2(bottomRight.x, topLeft.y);
+		vector2 bottomLeft = vector2(topLeft.x, bottomRight.y);
 
-		float id = m_texture->GetID();
 
-		m_vertices[0] =	{ absolute_position.x,			absolute_position.y,			0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 0.0f, id };
-		m_vertices[1] = { absolute_position_complete.x, absolute_position.y,			0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 0.0f, id };
-		m_vertices[2] = { absolute_position_complete.x, absolute_position_complete.y, 0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 1.0f, id };
-		m_vertices[3] = { absolute_position.x,			absolute_position_complete.y, 0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 1.0f, id };
+		float angle = math.DegreeToRadian(m_angle);
+
+		topLeft =		math.RotatePointAround(topLeft,		m_position, angle);
+		topRight =		math.RotatePointAround(topRight,	m_position, angle);
+		bottomLeft =	math.RotatePointAround(bottomLeft,	m_position, angle);
+		bottomRight =	math.RotatePointAround(bottomRight, m_position, angle);
+
+		m_vertices[0] =	{ topLeft.x,		topLeft.y,		0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 0.0f, 0 };
+		m_vertices[1] = { topRight.x,		topRight.y,		0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 0.0f, 0 };
+		m_vertices[2] = { bottomRight.x,	bottomRight.y,	0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 1.0f, 1.0f, 0 };
+		m_vertices[3] = { bottomLeft.x,		bottomLeft.y,	0.0f, m_color.r, m_color.g, m_color.b, m_color.a, 0.0f, 1.0f, 0 };
 
 		//std::copy(newVertices, newVertices + 4 * FLOATS_PER_VERTEX, m_vertices);
 	}
@@ -70,6 +80,11 @@ namespace Core
 		return m_vertices[id];
 	}
 
+	void Sprite::SetAngle(float angle)
+	{
+		m_angle = angle;
+		GenerateVertices();
+	}
 
 	void Sprite::Draw()
 	{

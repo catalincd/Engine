@@ -13,6 +13,7 @@ namespace Core
 	{
 		std::string m_name;
 		GLuint m_shaderID;
+		GLint m_MVPLocation;
 		std::vector<ShaderVar> m_shaders;
 
 	public:
@@ -25,5 +26,6 @@ namespace Core
 		GLuint GetId() const;
 		GLuint GetUniform(const char* name); 
 		GLuint GetAttrib(const char* name); 
+		GLint GetMVPLocation() const;
 	};
 }

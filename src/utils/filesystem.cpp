@@ -1,4 +1,5 @@
 #include "filesystem.h"
+#include <vector>
 #include <cstddef>
 
 namespace Core
@@ -11,12 +12,20 @@ namespace Core
 		while (getline(readStream, temp))
 			text += temp + "\n";
 
-#if 0
-		std::cout << text << std::endl;
-#endif
-
 		return text;
 	}
+
+	std::vector<std::string> FileSystem::ReadLines(std::string path)
+	{
+		std::vector<std::string> container;
+		std::ifstream readStream(path);
+		std::string temp;
+		while (getline(readStream, temp))
+			container.push_back(temp);
+
+		return container;
+	}
+
 
 	std::string FileSystem::GetFileExtension(std::string path)
 	{

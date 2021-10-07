@@ -12,23 +12,26 @@ namespace Core
 {
 	class Renderer
 	{
-		int MaxBatchSize;
-		Window* m_window;
-		ShaderManager m_shaderManager;
-		std::vector<Sprite*> sprites;
-		Vertex m_vertices[2048];
-		
 		int MAX_VERTICES_BYTES_SIZE;
 		int lastVertex;
-		GLuint VAO, VBO, IBO;
 		int SpritesNum = 0;
+		int MaxBatchSize;
+		//References
+		Window* m_window;
+		//References
+		std::vector<Sprite*> sprites;
+		Vertex m_vertices[2048];
+		GLuint VAO, VBO, IBO;
+		//IBO
 		GLushort indices[1024 * 6];
+		const uint defaultIndices[6] = { 0, 1, 2, 2, 3, 0 };
+		//Samplers
 		int TextureID[1024];
 		GLint samplersLocation;
-		const uint defaultIndices[6] = { 0, 1, 2, 2, 3, 0 };
+		
 	public:
 
-		void Init(Window* window);
+		void Initialize(Window* window);
 
 		void SubmitSprite(Sprite* sprite);
 

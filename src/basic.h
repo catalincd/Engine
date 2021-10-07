@@ -19,11 +19,12 @@
 #include "utils/errorhandler.h"
 #include "utils/vector2.h"
 #include "utils/color.h"
+#include "utils/utilString.h"
 
 
 
 #define DEBUG 1
 
 typedef unsigned int uint;
-
+typedef void (*Function) ();
 

@@ -153,6 +153,8 @@
     <ClCompile Include="src\buffers\vertexbuffer.cpp" />
     <ClCompile Include="src\colors.cpp" />
     <ClCompile Include="src\display\window.cpp" />
+    <ClCompile Include="src\events\event.cpp" />
+    <ClCompile Include="src\events\EventManager.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\renderer\renderer.cpp" />
     <ClCompile Include="src\shaders\shader.cpp" />
@@ -160,10 +162,17 @@
     <ClCompile Include="src\stb.cpp" />
     <ClCompile Include="src\texture\sprite.cpp" />
     <ClCompile Include="src\texture\texture.cpp" />
+    <ClCompile Include="src\text\Font.cpp" />
+    <ClCompile Include="src\text\FontManager.cpp" />
+    <ClCompile Include="src\text\Text.cpp" />
+    <ClCompile Include="src\text\TextRenderer.cpp" />
+    <ClCompile Include="src\time\TimeManager.cpp" />
+    <ClCompile Include="src\time\Timing.cpp" />
     <ClCompile Include="src\utils\color.cpp" />
     <ClCompile Include="src\utils\errorhandler.cpp" />
     <ClCompile Include="src\utils\filesystem.cpp" />
     <ClCompile Include="src\utils\math.cpp" />
+    <ClCompile Include="src\utils\utilString.cpp" />
     <ClCompile Include="src\utils\vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +183,8 @@
     <ClInclude Include="src\buffers\vertexarray.h" />
     <ClInclude Include="src\buffers\vertexbuffer.h" />
     <ClInclude Include="src\display\window.h" />
+    <ClInclude Include="src\events\event.h" />
+    <ClInclude Include="src\events\EventManager.h" />
     <ClInclude Include="src\linmath.h" />
     <ClInclude Include="src\renderer\renderer.h" />
     <ClInclude Include="src\shaders\shader.h" />
@@ -181,14 +192,23 @@
     <ClInclude Include="src\texture\sprite.h" />
     <ClInclude Include="src\texture\texture.h" />
     <ClInclude Include="src\colors.h" />
+    <ClInclude Include="src\text\Font.h" />
+    <ClInclude Include="src\text\FontManager.h" />
+    <ClInclude Include="src\text\Text.h" />
+    <ClInclude Include="src\text\TextRenderer.h" />
+    <ClInclude Include="src\time\TimeManager.h" />
+    <ClInclude Include="src\time\Timing.h" />
     <ClInclude Include="src\utils\color.h" />
     <ClInclude Include="src\utils\errorhandler.h" />
     <ClInclude Include="src\utils\filesystem.h" />
     <ClInclude Include="src\utils\math.h" />
+    <ClInclude Include="src\utils\utilString.h" />
     <ClInclude Include="src\utils\vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\defaultFrag.shader" />
+    <None Include="res\shaders\defaultTextFrag.shader" />
+    <None Include="res\shaders\defaultTextVert.shader" />
     <None Include="res\shaders\defaultVert.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

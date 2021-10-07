@@ -1,4 +1,16 @@
 #include "window.h"
+#include "../time/TimeManager.h"
+
+extern Core::TimeManager G_TimeManager;
+
+
+
+///Add Callback system and Log System in future builds
+
+static void ErrorCallback(int error, const char* description)
+{
+	fprintf(stderr, "Error: %s\n", description);
+}
 
 namespace Core
 {
@@ -9,11 +21,11 @@ namespace Core
 		m_height = height;
 
 		
-
+		glfwSetErrorCallback(ErrorCallback);
 
 		if (!glfwInit())
 			std::cout << "Failed to initialize GLFW" << std::endl;
-
+		 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
@@ -30,10 +42,13 @@ namespace Core
 			std::cout << "Failed to initialize OpenGL context" << std::endl;
 			return;
 		}
-		glfwSwapInterval(1);
+		
 		std::cout << glGetString(GL_VERSION) << std::endl;
 		std::cout << "Initialized window!" << std::endl;
 
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+		glfwSwapInterval(1);
 	}
 
 	Window::~Window()
@@ -46,9 +61,12 @@ namespace Core
 	{
 		while (!glfwWindowShouldClose(m_window))
 		{
-			Update();
+			G_TimeManager.SetCurrentFrameStartTime(glfwGetTime());
 			glfwSwapBuffers(m_window);
 			glfwPollEvents();
+			Update();
+
+			G_TimeManager.Update();
 		}
 	}
 
@@ -79,3 +97,5 @@ namespace Core
 		m_functions.push_back(function);
 	}
 }
+
+

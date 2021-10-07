@@ -21,6 +21,8 @@ namespace Core
 		Shader* GetShader(const std::string name);
 		GLuint GetShaderID(const std::string name);
 
-		void SetOrtographicMatrix(const std::string name, float l, float r, float b, float t, float n, float f);
+		void SetOrthographicMatrix(const std::string name, float l, float r, float b, float t, float n, float f);
+
+		void SetOrthographicMatrix(float l, float r, float b, float t, float n, float f);
 	};
 }

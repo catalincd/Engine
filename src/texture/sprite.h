@@ -30,9 +30,14 @@ namespace Core
 
 		void SetOrigin(vector2 origin);
 
+		void SetAngle(float angle);
+
+		void SetColor(Color color);
+
 		void Load();
 
 		void GenerateVertices();
+
 
 		Vertex GetVertices(int id);
 

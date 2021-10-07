@@ -2,7 +2,7 @@
 
 #include "../basic.h"
 
-typedef void (*Function) ();
+
 
 namespace Core
 {

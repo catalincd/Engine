@@ -37,6 +37,11 @@ namespace Core
 		m_name = name;
 	}
 
+	GLint Shader::GetMVPLocation() const
+	{
+		return m_MVPLocation;
+	}
+
 	void Shader::Load()
 	{
 		std::queue<GLuint> shadersQueue;
@@ -79,5 +84,7 @@ namespace Core
 		}
 
 		glLinkProgram(m_shaderID);
+
+		m_MVPLocation = glGetUniformLocation(m_shaderID, "MVP");
 	}
 }
