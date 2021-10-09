@@ -2,9 +2,7 @@
 #include "../time/TimeManager.h"
 
 extern Core::TimeManager G_TimeManager;
-
-
-
+Core::Window G_Window;
 ///Add Callback system and Log System in future builds
 
 static void ErrorCallback(int error, const char* description)
@@ -12,20 +10,36 @@ static void ErrorCallback(int error, const char* description)
 	fprintf(stderr, "Error: %s\n", description);
 }
 
+void WindowResizeCallback(GLFWwindow* window, int width, int height)
+{
+	std::cout << "Window resized: " << width << " x " << height << std::endl;
+}
+
+
 namespace Core
 {
+	Window::Window()
+	{
+
+	}
+
 	Window::Window(const char* title, int width, int height)
+	{
+		Initialize(title, width, height);
+	}
+
+	void Window::Initialize(const char* title, int width, int height)
 	{
 		m_title = title;
 		m_width = width;
 		m_height = height;
 
-		
+
 		glfwSetErrorCallback(ErrorCallback);
 
 		if (!glfwInit())
 			std::cout << "Failed to initialize GLFW" << std::endl;
-		 
+
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
@@ -42,7 +56,9 @@ namespace Core
 			std::cout << "Failed to initialize OpenGL context" << std::endl;
 			return;
 		}
-		
+
+		glfwSetWindowSizeCallback(m_window, WindowResizeCallback);
+
 		std::cout << glGetString(GL_VERSION) << std::endl;
 		std::cout << "Initialized window!" << std::endl;
 
@@ -62,6 +78,8 @@ namespace Core
 		while (!glfwWindowShouldClose(m_window))
 		{
 			G_TimeManager.SetCurrentFrameStartTime(glfwGetTime());
+
+			glfwGetFramebufferSize(G_Window.Get(), &m_width, &m_height);
 			glfwSwapBuffers(m_window);
 			glfwPollEvents();
 			Update();

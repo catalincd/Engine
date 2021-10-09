@@ -9,25 +9,30 @@
 #include "src/text/Font.h"
 #include "src/text/Text.h"
 #include "src/text/TextRenderer.h"
+#include "src/input/Input.h"
 
 using namespace Core;
 
+extern Window G_Window;
 extern ShaderManager G_ShaderManager;
 extern FontManager G_FontManager;
 extern Renderer G_Renderer;
 extern TextRenderer G_TextRenderer;
 extern TimeManager G_TimeManager;
+extern InputManager Input;
 
 Sprite* sprite;
 Sprite* sprite2;
 Sprite* sprite3;
-Window* window;
 Text* text;
 
 
-
+int x = 0;
 void BasicUpdate()
 {
+    if (Input.GetLeftMouse() == GLFW_REPEAT)
+        std::cout << "MOUSE REPEAT " << (x++) << std::endl;
+
     sprite->Draw();
     sprite2->Draw();
     //sprite3->Draw();
@@ -48,11 +53,10 @@ void BasicUpdate()
 
 int main(void)
 {
-    window = new Window("Title", 1280, 720);
-   
+    G_Window.Initialize("Title", 1280, 720);
     G_ShaderManager.LoadShaders();
-    G_Renderer.Initialize(window);
-    G_TextRenderer.Initialize(window);
+    G_Renderer.Initialize();
+    G_TextRenderer.Initialize();
 
     ///remove this in the future
     sprite = new Sprite("res/textures/cox.png", vector2(10, 10), vector2(100, 100), Color(0xFF00FFFF), 0);
@@ -61,13 +65,15 @@ int main(void)
     sprite2->SetOrigin(vector2(0.5f));
     
     G_FontManager.Initialize();
-    text = new Text("fuck OpenGL", vector2(100,100));
+    text = new Text("abcdefghijklmnopqrstuvwxyqz", vector2(100,100), "VerdanaBold");
+    text->SetScale(0.25);
+    text->SetOrigin(vector2(0.0f));
 
-    window->AddFunction(BasicUpdate);
+    G_Window.AddFunction(BasicUpdate);
     ///endof remove
 
    
-    window->Start();
+    G_Window.Start();
 
 
     return 0;

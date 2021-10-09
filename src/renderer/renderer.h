@@ -16,9 +16,8 @@ namespace Core
 		int lastVertex;
 		int SpritesNum = 0;
 		int MaxBatchSize;
-		//References
-		Window* m_window;
-		//References
+
+		//Containers
 		std::vector<Sprite*> sprites;
 		Vertex m_vertices[2048];
 		GLuint VAO, VBO, IBO;
@@ -31,7 +30,7 @@ namespace Core
 		
 	public:
 
-		void Initialize(Window* window);
+		void Initialize();
 
 		void SubmitSprite(Sprite* sprite);
 

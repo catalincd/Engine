@@ -148,14 +148,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\buffers\indexbuffer.cpp" />
-    <ClCompile Include="src\buffers\vertexarray.cpp" />
-    <ClCompile Include="src\buffers\vertexbuffer.cpp" />
     <ClCompile Include="src\colors.cpp" />
     <ClCompile Include="src\display\window.cpp" />
     <ClCompile Include="src\events\event.cpp" />
     <ClCompile Include="src\events\EventManager.cpp" />
     <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\input\Input.cpp" />
     <ClCompile Include="src\renderer\renderer.cpp" />
     <ClCompile Include="src\shaders\shader.cpp" />
     <ClCompile Include="src\shaders\ShaderManager.cpp" />
@@ -178,13 +176,10 @@
   <ItemGroup>
     <ClInclude Include="Libraries\include\stb\stb_image.h" />
     <ClInclude Include="src\basic.h" />
-    <ClInclude Include="src\buffers\buffers.h" />
-    <ClInclude Include="src\buffers\indexbuffer.h" />
-    <ClInclude Include="src\buffers\vertexarray.h" />
-    <ClInclude Include="src\buffers\vertexbuffer.h" />
     <ClInclude Include="src\display\window.h" />
     <ClInclude Include="src\events\event.h" />
     <ClInclude Include="src\events\EventManager.h" />
+    <ClInclude Include="src\input\Input.h" />
     <ClInclude Include="src\linmath.h" />
     <ClInclude Include="src\renderer\renderer.h" />
     <ClInclude Include="src\shaders\shader.h" />

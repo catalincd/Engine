@@ -65,10 +65,7 @@ namespace Core
 		mat4x4 matrix;
 		mat4x4_ortho(matrix, l, r, b, t, n, f);
 
-		GLuint shaderId = GetShaderID(name);
-
-		GLint orthoLocation = glGetUniformLocation(shaderId, "MVP");
-
+		GLint orthoLocation = GetShader(name)->GetMVPLocation();
 		glUniformMatrix4fv(orthoLocation, 1, GL_FALSE, (const GLfloat*)matrix);
 	}
 

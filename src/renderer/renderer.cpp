@@ -2,6 +2,7 @@
 #include "../basic.h"
 
 
+extern Core::Window G_Window;
 extern Core::ShaderManager G_ShaderManager;
 Core::Renderer G_Renderer;
 
@@ -18,9 +19,8 @@ namespace Core
 		std::cout << std::endl;
 	}
 
-	void Renderer::Initialize(Window* window)
+	void Renderer::Initialize()
 	{
-		m_window = window;
 		glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &MaxBatchSize);
 		std::cout << "GL_MAX_TEXTURE_IMAGE_UNITS: " << MaxBatchSize << std::endl;
 
@@ -88,24 +88,18 @@ namespace Core
 
 	void Renderer::Flush()
 	{
-		float ratio;
-		int width, height;
 		mat4x4 m, p, mvp;
-
-		glfwGetFramebufferSize(m_window->Get(), &width, &height);
-		ratio = width / (float)height;
-
+		vector2 WindowSize = G_Window.GetWindowSize();
 
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
 		glBufferData(GL_ARRAY_BUFFER, MAX_VERTICES_BYTES_SIZE, m_vertices, GL_DYNAMIC_DRAW);
 
-
-		glViewport(0, 0, width, height);
+		glViewport(0, 0, WindowSize.x, WindowSize.y);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
 		glUseProgram(G_ShaderManager.GetShaderID("default"));
-		G_ShaderManager.SetOrthographicMatrix(0.0f, 640.0f, 480.0f, 0.0f, 1.0f, -1.0f);
+		G_ShaderManager.SetOrthographicMatrix(0.0f, WindowSize.x, WindowSize.y, 0.0f, 1.0f, -1.0f);
 
 		glUniform1iv(2, 64, TextureID);
 

@@ -1,2 +1,8 @@
-﻿  TextRenderer.cpp
+﻿  Font.cpp
+C:\Users\Wizard\Desktop\Engine\src\text\Font.cpp(24,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Wizard\Desktop\Engine\src\text\Font.cpp(25,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Wizard\Desktop\Engine\src\text\Font.cpp(36,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Wizard\Desktop\Engine\src\text\Font.cpp(37,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Wizard\Desktop\Engine\src\text\Font.cpp(45,29): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Wizard\Desktop\Engine\src\text\Font.cpp(47,18): warning C4244: '=': conversion from 'float' to 'uint', possible loss of data
   Engine.vcxproj -> C:\Users\Wizard\Desktop\Engine\x64\Debug\Engine.exe
