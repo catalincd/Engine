@@ -1,7 +1,7 @@
 #pragma once
 #include "../basic.h"
 #include "../display/window.h"
-#include "../texture/sprite.h"
+#include "../ui/sprite.h"
 #include "../shaders/ShaderManager.h"
 
 #define MAX_VERTICES 2048
@@ -10,7 +10,7 @@
 
 namespace Core
 {
-	class Renderer
+	class SpriteRenderer
 	{
 		int MAX_VERTICES_BYTES_SIZE;
 		int lastVertex;
@@ -26,6 +26,7 @@ namespace Core
 		const uint defaultIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		//Samplers
 		int TextureID[1024];
+		int TextureArray[1024];
 		GLint samplersLocation;
 		
 	public:

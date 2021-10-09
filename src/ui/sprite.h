@@ -1,6 +1,6 @@
 #pragma once
 #include "../basic.h"
-#include "texture.h"
+#include "../texture/texture.h"
 
 
 

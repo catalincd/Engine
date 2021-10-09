@@ -1,10 +1,10 @@
-#include "renderer.h"
+#include "SpriteRenderer.h"
 #include "../basic.h"
 
 
 extern Core::Window G_Window;
 extern Core::ShaderManager G_ShaderManager;
-Core::Renderer G_Renderer;
+Core::SpriteRenderer G_SpriteRenderer;
 
 namespace Core
 {
@@ -19,7 +19,7 @@ namespace Core
 		std::cout << std::endl;
 	}
 
-	void Renderer::Initialize()
+	void SpriteRenderer::Initialize()
 	{
 		glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &MaxBatchSize);
 		std::cout << "GL_MAX_TEXTURE_IMAGE_UNITS: " << MaxBatchSize << std::endl;
@@ -43,6 +43,11 @@ namespace Core
 			{
 				indices[i * 6 + t] = defaultIndices[t] + 4 * i;
 			}
+		}
+
+		for (int i = 0; i < 1024; i++)
+		{
+			TextureArray[i] = i;
 		}
 
 		glGenVertexArrays(1, &VAO);
@@ -69,7 +74,7 @@ namespace Core
 	}
 
 
-	void Renderer::SubmitSprite(Sprite* sprite)
+	void SpriteRenderer::SubmitSprite(Sprite* sprite)
 	{
 		int offset = SpritesNum * 4;
 
@@ -86,7 +91,7 @@ namespace Core
 
 	
 
-	void Renderer::Flush()
+	void SpriteRenderer::Flush()
 	{
 		mat4x4 m, p, mvp;
 		vector2 WindowSize = G_Window.GetWindowSize();
@@ -101,7 +106,7 @@ namespace Core
 		glUseProgram(G_ShaderManager.GetShaderID("default"));
 		G_ShaderManager.SetOrthographicMatrix(0.0f, WindowSize.x, WindowSize.y, 0.0f, 1.0f, -1.0f);
 
-		glUniform1iv(2, 64, TextureID);
+		glUniform1iv(samplersLocation, 64, TextureArray);
 
 		for (int i = 0; i < SpritesNum; i++)
 		{

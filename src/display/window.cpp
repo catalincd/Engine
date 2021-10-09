@@ -62,9 +62,17 @@ namespace Core
 		std::cout << glGetString(GL_VERSION) << std::endl;
 		std::cout << "Initialized window!" << std::endl;
 
+
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-		glfwSwapInterval(1);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+		
+		glEnable(GL_POINT_SMOOTH);
+		glDisable(GL_DEPTH_TEST);
+		glEnable(GL_ALPHA_TEST);
+		
+		//glfwSwapInterval(1);
 	}
 
 	Window::~Window()

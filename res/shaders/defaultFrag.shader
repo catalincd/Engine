@@ -12,5 +12,8 @@ in vec4 Color;
 void main()
 {
 	int index = int(TextureID);
-	gl_FragColor = texture(u_Textures[index], TexPos) * Color;
+
+	vec4 texColor = texture(u_Textures[index], TexPos);
+
+	gl_FragColor = texColor * Color;
 };

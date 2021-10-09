@@ -1,8 +1,8 @@
 #include "sprite.h"
-#include "../renderer/renderer.h"
+#include "../renderer/SpriteRenderer.h"
 #include "../utils/math.h"
 
-extern Core::Renderer G_Renderer;
+extern Core::SpriteRenderer G_SpriteRenderer;
 
 
 namespace Core
@@ -88,7 +88,7 @@ namespace Core
 
 	void Sprite::Draw()
 	{
-		G_Renderer.SubmitSprite(this);
+		G_SpriteRenderer.SubmitSprite(this);
 	}
 
 	void Sprite::Draw(vector2 position, vector2 size, Color color = Color(0xFFFFFFFF), float angle = 0)

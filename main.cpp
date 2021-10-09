@@ -3,7 +3,7 @@
 #include "src/shaders/shader.h"
 #include "src/shaders/ShaderManager.h"
 #include "src/text/FontManager.h"
-#include "src/renderer/renderer.h"
+#include "src/renderer/SpriteRenderer.h"
 #include "src/time/TimeManager.h"
 #include "src/utils/utilString.h"
 #include "src/text/Font.h"
@@ -16,7 +16,7 @@ using namespace Core;
 extern Window G_Window;
 extern ShaderManager G_ShaderManager;
 extern FontManager G_FontManager;
-extern Renderer G_Renderer;
+extern SpriteRenderer G_SpriteRenderer;
 extern TextRenderer G_TextRenderer;
 extern TimeManager G_TimeManager;
 extern InputManager Input;
@@ -34,16 +34,17 @@ void BasicUpdate()
         std::cout << "MOUSE REPEAT " << (x++) << std::endl;
 
     sprite->Draw();
-    sprite2->Draw();
-    //sprite3->Draw();
+    sprite2->Draw();   
+    sprite3->Draw();
 
     sprite2->SetAngle(90 * glfwGetTime());
     
     //std::cout << GetFPSRate() << std::endl;
-
+    int fps = GetFPSRate();
+    text->SetText("FPS: " + std::to_string(fps));
     
 
-    G_Renderer.Flush();
+    G_SpriteRenderer.Flush();
 
 
 
@@ -55,17 +56,17 @@ int main(void)
 {
     G_Window.Initialize("Title", 1280, 720);
     G_ShaderManager.LoadShaders();
-    G_Renderer.Initialize();
+    G_SpriteRenderer.Initialize();
     G_TextRenderer.Initialize();
 
     ///remove this in the future
-    sprite = new Sprite("res/textures/cox.png", vector2(10, 10), vector2(100, 100), Color(0xFF00FFFF), 0);
-    sprite2 = new Sprite("res/textures/pop cola.jpg", vector2(320, 240), vector2(300, 300), Color(0xFF00FF00), 45);
-    sprite3 = new Sprite("res/textures/cox.png", vector2(320, 240), vector2(300, 300), Color(0xFF00FF00), 0);
+    sprite = new Sprite("res/textures/hull/h2.png", vector2(10, 10), vector2(100, 100), Color(0xFF00FFFF), 0);
+    sprite2 = new Sprite("res/textures/hull/h1_q.png", vector2(320, 240), vector2(300, 300), Color(0xFF00FFFF), 45);
+    sprite3 = new Sprite("res/textures/turret/t1.png", vector2(320, 240), vector2(300, 300), Color(0xFF00FFFF), 0);
     sprite2->SetOrigin(vector2(0.5f));
     
     G_FontManager.Initialize();
-    text = new Text("abcdefghijklmnopqrstuvwxyqz", vector2(100,100), "VerdanaBold");
+    text = new Text("abcdefghijklmnopqrstuvwxyqz", vector2(5,5), "VerdanaBold");
     text->SetScale(0.25);
     text->SetOrigin(vector2(0.0f));
 
