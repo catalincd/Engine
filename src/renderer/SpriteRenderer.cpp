@@ -82,7 +82,7 @@ namespace Core
 
 		for (int i = 0; i < 4; i++)
 		{
-			m_vertices[offset + i] = (sprite->GetVertices(i));
+			m_vertices[offset + i] = (sprite->GetVertex(i));
 			m_vertices[offset + i].ti = SpritesNum;
 		}
 		
@@ -103,11 +103,13 @@ namespace Core
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
+		
 		glUseProgram(G_ShaderManager.GetShaderID("default"));
-		G_ShaderManager.SetOrthographicMatrix(0.0f, WindowSize.x, WindowSize.y, 0.0f, 1.0f, -1.0f);
-
-		glUniform1iv(samplersLocation, 64, TextureArray);
-
+		
+		G_ShaderManager.SetOrthographicMatrix("default", 0.0f, WindowSize.x, WindowSize.y, 0.0f, 1.0f, -1.0f);
+		
+		glUniform1iv(samplersLocation, 32, TextureArray);
+		
 		for (int i = 0; i < SpritesNum; i++)
 		{
 			glActiveTexture(GL_TEXTURE0 + i);

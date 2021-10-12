@@ -1,6 +1,5 @@
 #pragma once
 #include "../basic.h"
-#include "../texture/texture.h"
 
 #define FONTS_PATH "res/fonts/"
 
@@ -10,7 +9,8 @@ namespace Core
 	{
 		std::string m_name;
 		std::string m_path;
-		Texture* m_texture;
+		std::string m_texturePath;
+		uint m_textureID;
 		uint m_maxHeight;
 
 		vector2 m_size = vector2(512.0f, 512.0f);
@@ -37,6 +37,6 @@ namespace Core
 		vector2 GetBottom(char c); 
 		vector2 GetOffset(char c);
 		float GetAdvance(char c);
-		Texture* GetTexture();
+		uint GetTextureID() const;
 	};
 }

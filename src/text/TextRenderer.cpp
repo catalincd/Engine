@@ -44,7 +44,7 @@ namespace Core
 
 	void TextRenderer::Draw(Text text)
 	{
-		Texture* texture = text.GetFont().GetTexture();
+		uint textureID = text.GetFont().GetTextureID();
 		
 		
 		int Length = text.GetLength();
@@ -68,12 +68,14 @@ namespace Core
 		glUseProgram(G_ShaderManager.GetShaderID("defaultText"));
 		G_ShaderManager.SetOrthographicMatrix("defaultText", 0.0f, WindowSize.x, WindowSize.y, 0.0f, 1.0f, -1.0f);
 
-		texture->Bind(1);
-		glUniform1i(SamplerLocation, 1);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		
+		glUniform1i(SamplerLocation, 0);
 		glUniform4f(ColorLocation, color.r, color.g, color.b, color.a);
 		
 		glDrawElements(GL_TRIANGLES, 6 * Length, GL_UNSIGNED_SHORT, 0);
 
-		texture->Unbind(1);
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 }

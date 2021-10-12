@@ -33,16 +33,13 @@
     <ClCompile Include="src\utils\errorhandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\texture\texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\shaders\ShaderManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ui\sprite.cpp">
+    <ClCompile Include="src\ui\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\color.cpp">
@@ -54,7 +51,7 @@
     <ClCompile Include="src\colors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\SpriteRenderer.cpp">
+    <ClCompile Include="src\Renderer\SpriteRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\math.cpp">
@@ -72,25 +69,43 @@
     <ClCompile Include="src\events\EventManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\text\FontManager.cpp">
+    <ClCompile Include="src\Text\FontManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\text\Font.cpp">
+    <ClCompile Include="src\Text\Font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\utilString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\text\Text.cpp">
+    <ClCompile Include="src\Text\Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\text\TextRenderer.cpp">
+    <ClCompile Include="src\Text\TextRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\input\Input.cpp">
+    <ClCompile Include="src\Input\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\texture\TextureManager.cpp">
+    <ClCompile Include="src\Texture\TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\Element.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlobalController\GlobalController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\World\World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,16 +128,13 @@
     <ClInclude Include="src\utils\errorhandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\texture\texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\shaders\ShaderManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Libraries\include\stb\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ui\sprite.h">
+    <ClInclude Include="src\ui\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\colors.h">
@@ -134,7 +146,7 @@
     <ClInclude Include="src\utils\color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\renderer\SpriteRenderer.h">
+    <ClInclude Include="src\Renderer\SpriteRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\utils\math.h">
@@ -152,32 +164,52 @@
     <ClInclude Include="src\events\EventManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\text\FontManager.h">
+    <ClInclude Include="src\Text\FontManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\text\Font.h">
+    <ClInclude Include="src\Text\Font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\utils\utilString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\text\Text.h">
+    <ClInclude Include="src\Text\Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\text\TextRenderer.h">
+    <ClInclude Include="src\Text\TextRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\input\Input.h">
+    <ClInclude Include="src\Input\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\texture\TextureManager.h">
+    <ClInclude Include="src\Texture\TextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UI\Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UI\Element.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlobalController\GlobalController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\World\World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\defaultVert.shader" />
-    <None Include="res\shaders\defaultFrag.shader" />
-    <None Include="res\shaders\defaultTextVert.shader" />
-    <None Include="res\shaders\defaultTextFrag.shader" />
+    <None Include="res\shaders\defaultFrag.glsl" />
+    <None Include="res\shaders\defaultTextFrag.glsl" />
+    <None Include="res\shaders\defaultTextVert.glsl" />
+    <None Include="res\shaders\defaultVert.glsl" />
+    <None Include="res\shaders\entityFrag.glsl" />
+    <None Include="res\shaders\entityVert.glsl" />
   </ItemGroup>
 </Project>

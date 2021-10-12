@@ -32,4 +32,10 @@ namespace Core
 		std::size_t found = path.find_last_of(".");
 		return (path.substr(found + 1));
 	}
+
+	bool FileSystem::Exists(std::string path)
+	{
+		struct stat buffer;
+		return (stat(path.c_str(), &buffer) == 0);
+	}
 }

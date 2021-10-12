@@ -51,7 +51,5 @@ namespace Core
 		void SetText(std::string text);
 
 		Color GetColor() const;
-
-		///Set Scale, Angle, Origin, Everything
 	};
 }

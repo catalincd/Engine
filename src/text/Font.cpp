@@ -1,6 +1,9 @@
 #include "Font.h"
 #include "math.h"
+#include "../Texture/TextureManager.h"
 #include <windows.h>
+
+extern Core::TextureManager G_TextureManager;
 
 namespace Core
 {
@@ -8,7 +11,7 @@ namespace Core
 	{
 		m_name = name;
 		m_path = FONTS_PATH + name + ".fnt";
-		m_texture = new Texture(FONTS_PATH + name + ".png");
+		m_texturePath = FONTS_PATH + name + ".png";
 	}
 
 	std::string Font::GetName() const
@@ -47,7 +50,7 @@ namespace Core
 			m_maxHeight = max(m_maxHeight, height[index]);
 		}
 
-		m_texture->Load();
+		m_textureID = G_TextureManager.LoadTexture(m_texturePath);
 	}
 
 	vector2 Font::ComputeTextSize(std::string text)
@@ -87,9 +90,9 @@ namespace Core
 		return vector2(xS[c], yS[c]);
 	}
 
-	Texture* Font::GetTexture()
+	uint Font::GetTextureID() const
 	{
-		return m_texture;
+		return m_textureID;
 	}
 	
 }

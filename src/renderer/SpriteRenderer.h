@@ -19,7 +19,7 @@ namespace Core
 
 		//Containers
 		std::vector<Sprite*> sprites;
-		Vertex m_vertices[2048];
+		UIVertex m_vertices[2048];
 		GLuint VAO, VBO, IBO;
 		//IBO
 		GLushort indices[1024 * 6];

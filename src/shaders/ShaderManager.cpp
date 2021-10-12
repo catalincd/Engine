@@ -4,15 +4,18 @@ Core::ShaderManager G_ShaderManager;
 
 namespace Core
 {
-	ShaderVar defaultVertexShader = { "res/shaders/defaultVert.shader", GL_VERTEX_SHADER };
-	ShaderVar defaultFragmentShader = { "res/shaders/defaultFrag.shader", GL_FRAGMENT_SHADER };
+	ShaderVar defaultVertexShader = { "res/shaders/defaultVert.glsl", GL_VERTEX_SHADER };
+	ShaderVar defaultFragmentShader = { "res/shaders/defaultFrag.glsl", GL_FRAGMENT_SHADER };
 
-	ShaderVar defaultTextVertexShader = { "res/shaders/defaultTextVert.shader", GL_VERTEX_SHADER };
-	ShaderVar defaultTextFragmentShader = { "res/shaders/defaultTextFrag.shader", GL_FRAGMENT_SHADER };
+	ShaderVar defaultTextVertexShader = { "res/shaders/defaultTextVert.glsl", GL_VERTEX_SHADER };
+	ShaderVar defaultTextFragmentShader = { "res/shaders/defaultTextFrag.glsl", GL_FRAGMENT_SHADER };
+
+	ShaderVar entityVertex = { "res/shaders/entityVert.glsl", GL_VERTEX_SHADER };
+	ShaderVar entityFragment = { "res/shaders/entityFrag.glsl", GL_FRAGMENT_SHADER };
 
 	Shader* defaultShader = new Shader("default", { defaultVertexShader, defaultFragmentShader });
 	Shader* defaultTextShader = new Shader("defaultText", { defaultTextVertexShader, defaultTextFragmentShader });
-
+	Shader* entityShader = new Shader("entity", { entityVertex, entityFragment });
 
 	void ShaderManager::InitList()
 	{
@@ -21,6 +24,7 @@ namespace Core
 
 		Shaders.push_back(defaultShader);
 		Shaders.push_back(defaultTextShader);
+		Shaders.push_back(entityShader);
 	}
 
 
@@ -31,7 +35,7 @@ namespace Core
 		for (int i = 0; i < Shaders.size(); i++)
 		{
 			Shaders[i]->Load();
-			ShadersMap.insert(std::pair<std::string, int>(Shaders[i]->GetName(), i));
+			ShadersMap.insert(MapPair(Shaders[i]->GetName(), i));
 		}
 	}
 
@@ -50,13 +54,13 @@ namespace Core
 
 	GLuint ShaderManager::GetShaderID(const std::string name)
 	{
-		std::map<std::string, int>::iterator it = ShadersMap.find(name);
+		Map::iterator it = ShadersMap.find(name);
 		return (it == ShadersMap.end() ? 0 : Shaders[(*it).second]->GetId());
 	}
 
 	Shader* ShaderManager::GetShader(const std::string name)
 	{
-		std::map<std::string, int>::iterator it = ShadersMap.find(name);
+		Map::iterator it = ShadersMap.find(name);
 		return (it == ShadersMap.end()? nullptr : Shaders[(*it).second]);
 	}
 
@@ -68,6 +72,7 @@ namespace Core
 		GLint orthoLocation = GetShader(name)->GetMVPLocation();
 		glUniformMatrix4fv(orthoLocation, 1, GL_FALSE, (const GLfloat*)matrix);
 	}
+
 
 	void ShaderManager::SetOrthographicMatrix(float l, float r, float b, float t, float n, float f)
 	{

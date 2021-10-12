@@ -49,8 +49,6 @@ namespace Core
 			m_vertices.push_back(bottomLeft);
 
 			x += m_fontRef.GetAdvance(m_text[i]) * m_scale.x;
-
-			//std::cout<< m_size2D.x<<' ';
 		}
 	}
 

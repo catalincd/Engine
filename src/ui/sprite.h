@@ -1,45 +1,36 @@
 #pragma once
 #include "../basic.h"
-#include "../texture/texture.h"
-
-
+#include "../Texture/TextureManager.h"
+#include "Element.h"
 
 namespace Core
 {
-	struct Vertex
+	class Sprite : public Element
 	{
-		float x, y, z;
-		float r, g, b, a;
-		float tx, ty;
-		float ti;
-	};
-
-	class Sprite
-	{
+	protected:
 		vector2 m_position;
 		vector2 m_size;
 		vector2 m_origin = vector2(0.0f);
 		Color m_color;
 		float m_angle;
 		std::string m_path;
-		Texture* m_texture;
-		Vertex m_vertices[4];
+		uint m_textureID;
+		UIVertex m_vertices[4];
+
+		vector2 topLeft;
+		vector2 bottomLeft;
+		vector2 topRight;
+		vector2 bottomRight;
 
 	public:
-		Sprite(std::string path, vector2 position, vector2 size, Color color, float angle);
-
-		void SetOrigin(vector2 origin);
-
-		void SetAngle(float angle);
-
-		void SetColor(Color color);
+		explicit Sprite(std::string path, vector2 position, vector2 size, Color color, float angle);
 
 		void Load();
 
 		void GenerateVertices();
 
 
-		Vertex GetVertices(int id);
+		UIVertex GetVertex(int id);
 
 		GLuint GetTextureID() const;
 		
@@ -47,6 +38,8 @@ namespace Core
 
 		void Draw(vector2 position, vector2 size, Color color, float angle);
 	
-
+		void SetOrigin(vector2 origin);
+		void SetAngle(float angle);
+		void SetColor(Color color);
 	};
 }

@@ -17,5 +17,7 @@ namespace Core
 		static std::vector<std::string> ReadLines(std::string path);
 
 		static std::string GetFileExtension(std::string path);
+
+		static bool Exists(std::string path);
 	};
 }

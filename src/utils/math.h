@@ -22,6 +22,34 @@ namespace Core
 
 	float max(float a, float b);
 
+	bool isPointInRect(const vector2& p, const vector2& pos, const vector2& size, const vector2& origin);
+
+	bool isPointInRect(const vector2& p, const vector2& pos, const vector2& size);
+
+	bool isPointInCircle(const vector2& p, const vector2& pos, const float radius);
+
+	bool isPointInTriangle(vector2 pt, vector2 v1, vector2 v2, vector2 v3);
+
+	float magnitude(const vector2& v);
+
+	vector2 normalize(const vector2& v);
+
+	float clamp(const float val, const float minVal, const float maxVal);
+
+	vector2 clamp(const vector2& val, const vector2& minVal, const vector2& maxVal);
+
+	vector2 capVector(const vector2& v, const float length);
+
+	vector2 min(const vector2& a, const vector2& b);
+
+	float dp2(const vector2 a, const vector2 b);
+
+	vector2 reflect(vector2 dir, vector2 normal);
+
+	float squaredDistance(vector2 a, vector2 b);
+
+	float sign(vector2 p1, vector2 p2, vector2 p3);
+
 	class Math
 	{
 	public:

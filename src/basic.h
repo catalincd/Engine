@@ -20,6 +20,7 @@
 #include "utils/vector2.h"
 #include "utils/color.h"
 #include "utils/utilString.h"
+#include "utils/math.h"
 
 
 
@@ -27,4 +28,6 @@
 
 typedef unsigned int uint;
 typedef void (*Function) ();
+typedef std::map<std::string, int> Map;
+typedef std::pair<std::string, int> MapPair;
 

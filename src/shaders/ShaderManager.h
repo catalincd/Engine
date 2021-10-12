@@ -6,7 +6,7 @@ namespace Core
 {
 	class ShaderManager
 	{
-		std::map<std::string, int> ShadersMap;
+		Map ShadersMap;
 		std::vector<Shader*> Shaders;
 
 	public:

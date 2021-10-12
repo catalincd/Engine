@@ -1,8 +1,9 @@
-#include "sprite.h"
+#include "Sprite.h"
 #include "../renderer/SpriteRenderer.h"
 #include "../utils/math.h"
 
 extern Core::SpriteRenderer G_SpriteRenderer;
+extern Core::TextureManager G_TextureManager;
 
 
 namespace Core
@@ -16,36 +17,19 @@ namespace Core
 		m_size = size;
 		m_color = color;
 		m_angle = angle;
-
-		Load();
-		GenerateVertices();
 	}
 
 	GLuint Sprite::GetTextureID() const
 	{
-		return m_texture->GetID();
+		return m_textureID;
 	}
 
-	void Sprite::SetOrigin(vector2 origin)
-	{
-		m_origin = origin;
-		GenerateVertices();
-	}
-
-	void Sprite::SetColor(Color color)
-	{
-		m_color = color;
-		GenerateVertices();
-	}
+	
 
 	void Sprite::Load()
 	{
-		m_texture = new Texture(m_path);
-
-		if(FileSystem::GetFileExtension(m_path) == "png")
-			m_texture->Load();
-		else
-			m_texture->LoadJPG();
+		m_textureID = G_TextureManager.LoadTexture(m_path);
+		GenerateVertices();
 	}
 
 	void Sprite::GenerateVertices()
@@ -54,10 +38,10 @@ namespace Core
 		vector2 secondPivot = m_size * (vector2(1.0f) - m_origin);	
 		
 
-		vector2 topLeft = m_position - pivot;
-		vector2 bottomRight = m_position + secondPivot;
-		vector2 topRight = vector2(bottomRight.x, topLeft.y);
-		vector2 bottomLeft = vector2(topLeft.x, bottomRight.y);
+		topLeft = m_position - pivot;
+		bottomRight = m_position + secondPivot;
+		topRight = vector2(bottomRight.x, topLeft.y);
+		bottomLeft = vector2(topLeft.x, bottomRight.y);
 
 
 		float angle = math.DegreeToRadian(m_angle);
@@ -75,19 +59,14 @@ namespace Core
 		//std::copy(newVertices, newVertices + 4 * FLOATS_PER_VERTEX, m_vertices);
 	}
 	
-	Vertex Sprite::GetVertices(int id)
+	UIVertex Sprite::GetVertex(int id)
 	{
 		return m_vertices[id];
 	}
 
-	void Sprite::SetAngle(float angle)
-	{
-		m_angle = angle;
-		GenerateVertices();
-	}
-
 	void Sprite::Draw()
 	{
+		GenerateVertices();
 		G_SpriteRenderer.SubmitSprite(this);
 	}
 
@@ -98,8 +77,25 @@ namespace Core
 		m_color = color;
 		m_angle = angle;
 
-		GenerateVertices();
 		Draw();
+	}
+
+	void Sprite::SetOrigin(vector2 origin)
+	{
+		m_origin = origin;
+		GenerateVertices();
+	}
+
+	void Sprite::SetColor(Color color)
+	{
+		m_color = color;
+		GenerateVertices();
+	}
+
+	void Sprite::SetAngle(float angle)
+	{
+		m_angle = angle;
+		GenerateVertices();
 	}
 	
 }
