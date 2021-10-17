@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\colors.cpp" />
+    <ClCompile Include="src\display\Screen.cpp" />
     <ClCompile Include="src\display\window.cpp" />
     <ClCompile Include="src\Entity\Entity.cpp" />
     <ClCompile Include="src\events\event.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\GlobalController\GlobalController.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
+    <ClCompile Include="src\Light\Light.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Renderer\SpriteRenderer.cpp" />
     <ClCompile Include="src\shaders\shader.cpp" />
@@ -177,17 +179,21 @@
     <ClCompile Include="src\utils\math.cpp" />
     <ClCompile Include="src\utils\utilString.cpp" />
     <ClCompile Include="src\utils\vector2.cpp" />
+    <ClCompile Include="src\utils\vector3.cpp" />
+    <ClCompile Include="src\utils\vector4.cpp" />
     <ClCompile Include="src\World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Libraries\include\stb\stb_image.h" />
     <ClInclude Include="src\basic.h" />
+    <ClInclude Include="src\display\Screen.h" />
     <ClInclude Include="src\display\window.h" />
     <ClInclude Include="src\Entity\Entity.h" />
     <ClInclude Include="src\events\event.h" />
     <ClInclude Include="src\events\EventManager.h" />
     <ClInclude Include="src\GlobalController\GlobalController.h" />
     <ClInclude Include="src\Input\Input.h" />
+    <ClInclude Include="src\Light\Light.h" />
     <ClInclude Include="src\linmath.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\Renderer\SpriteRenderer.h" />
@@ -210,6 +216,8 @@
     <ClInclude Include="src\utils\math.h" />
     <ClInclude Include="src\utils\utilString.h" />
     <ClInclude Include="src\utils\vector2.h" />
+    <ClInclude Include="src\utils\vector3.h" />
+    <ClInclude Include="src\utils\vector4.h" />
     <ClInclude Include="src\World\World.h" />
   </ItemGroup>
   <ItemGroup>

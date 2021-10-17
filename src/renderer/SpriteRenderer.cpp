@@ -100,8 +100,7 @@ namespace Core
 		glBufferData(GL_ARRAY_BUFFER, MAX_VERTICES_BYTES_SIZE, m_vertices, GL_DYNAMIC_DRAW);
 
 		glViewport(0, 0, WindowSize.x, WindowSize.y);
-		glClear(GL_COLOR_BUFFER_BIT);
-		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+		
 
 		
 		glUseProgram(G_ShaderManager.GetShaderID("default"));

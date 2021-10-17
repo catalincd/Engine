@@ -31,5 +31,6 @@ public:
 	vector2 operator-(vector2 v);
 	vector2 operator*(float f);
 	vector2 operator*(vector2 v);
+	vector2 operator/(vector2 v);
 };
 

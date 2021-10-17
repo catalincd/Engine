@@ -1,7 +1,11 @@
 #include "window.h"
+#include "Screen.h"
+#include "../World/World.h"
 #include "../time/TimeManager.h"
 
 extern Core::TimeManager G_TimeManager;
+extern Core::Screen G_Screen;
+extern Core::World G_World;
 Core::Window G_Window;
 ///Add Callback system and Log System in future builds
 
@@ -12,6 +16,8 @@ static void ErrorCallback(int error, const char* description)
 
 void WindowResizeCallback(GLFWwindow* window, int width, int height)
 {
+	G_Screen.SetScreenSize(vector2(width, height));
+	G_World.ComputeBucketLimits(vector2(width, height));
 	std::cout << "Window resized: " << width << " x " << height << std::endl;
 }
 
@@ -72,7 +78,7 @@ namespace Core
 		glDisable(GL_DEPTH_TEST);
 		glEnable(GL_ALPHA_TEST);
 		
-		//glfwSwapInterval(1);
+		glfwSwapInterval(1);
 	}
 
 	Window::~Window()

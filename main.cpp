@@ -36,8 +36,8 @@ int avgFps = 0;
 
 int x = 0;
 
-int NUM = 100;
-int eNUM = 500;
+int NUM = 1;
+int eNUM = 100;
 
 void BasicUpdate()
 {
@@ -72,7 +72,7 @@ void BasicUpdate()
     else sprite3->SetColor(0xFFFFFFFF);
    
     G_Renderer.Update();
-    G_SpriteRenderer.Flush();
+    
 
    
    
@@ -84,11 +84,14 @@ void BasicUpdate()
         entities[i]->Draw();
     }
     
-    for (int i = 1; i < NUM; i++)
+    for (int i = 0; i < NUM; i++)
     {
-        text[i]->SetText("FPS: " + std::to_string(avgFps));
+        text[i]->SetText("FPS: " + std::to_string(GetFPSRate()));
+        //text[i]->SetText("FPS: " + std::to_string(avgFps));
         text[i]->Draw();
     }
+
+    G_SpriteRenderer.Flush();
 }
 
 
@@ -107,13 +110,14 @@ int main(void)
 
     for (int i = 0; i < eNUM; i++)
     {
-        entities[i] = new Entity("ian.png", vector2((i / 15) * 100, (i % 15) * 100), vector2(100, 100));
+        entities[i] = new Entity("barril", vector2((i / 4) * 200, (i % 4) * 200), vector2(200, 200));
         entities[i]->Load();
+        entities[i]->SetApplyLightType(0);
     }
     
 
     ///remove this in the future
-    sprite = new Sprite("res/textures/pop.jpg", vector2(10, 10), vector2(100, 100), Color(0xFF00FFFF), 0);
+    sprite = new Sprite("res/textures/pop.jpg", vector2(10, 50), vector2(100, 100), Color(0xFF00FFFF), 0);
     sprite2 = new Sprite("res/textures/hull/h1.png", vector2(320, 240), vector2(300, 300), Color(0xFF00FFFF), 45);
     sprite3 = new Button("res/textures/pop.jpg", vector2(320, 240), vector2(300, 300), Color(0xFFFFFFFF), 0);
 
@@ -127,7 +131,7 @@ int main(void)
     G_FontManager.Initialize();
     text = new Text*[NUM];
 
-    for (int i = 1; i < NUM; i++)
+    for (int i = 0; i < NUM; i++)
     {
         text[i] = new Text("Dummy Text", vector2((i / 30) * 200, (i % 30) * 50));
         text[i]->SetScale(0.25);

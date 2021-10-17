@@ -1,5 +1,6 @@
 #pragma once
 #include "../basic.h"
+#include "../Light/Light.h"
 
 namespace Core
 {
@@ -12,6 +13,14 @@ namespace Core
 	class Entity
 	{
 		int ID = -1;
+		bool IgnoreBuckets = false;
+		
+		int ApplyLightType = 0;
+		float SpecularScale = 0.5f;
+
+		bool Lit = false;
+		Light* m_light;
+
 		std::string m_name;
 
 		std::string m_DiffusePath;
@@ -47,6 +56,10 @@ namespace Core
 
 		void GenerateVertices();
 
+		vector2 GetBucket();
+
+		vector2 GetPosition() const;
+
 		inline EntityVertex GetVertex(int id) const { return m_vertices[id]; }
 
 		void Draw();
@@ -56,6 +69,12 @@ namespace Core
 		inline GLuint GetNormalID() const { return m_NormalID; }
 
 		inline Color GetColor() const { return m_color; }
+
+		inline float GetSpacularScale() const { return SpecularScale; }
+		void SetSpecularScale(float scale);
+
+		inline int GetApplyLightType() const { return ApplyLightType; }
+		void SetApplyLightType(int type);
 
 		//Set Origin, Color, ...
 	};

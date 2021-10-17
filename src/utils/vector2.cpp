@@ -34,3 +34,8 @@ vector2 vector2::operator*(vector2 v)
 {
 	return vector2(this->x * v.x, this->y * v.y);
 }
+
+vector2 vector2::operator/(vector2 v)
+{
+	return vector2(this->x / v.x, this->y / v.y);
+}

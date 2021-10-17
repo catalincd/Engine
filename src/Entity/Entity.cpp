@@ -1,10 +1,12 @@
 #include "Entity.h"
 #include "../Texture/TextureManager.h"
 #include "../Renderer/Renderer.h"
+#include "../World/World.h"
 #include "../utils/math.h"
 
 extern Core::Renderer G_Renderer;
 extern Core::TextureManager G_TextureManager;
+extern Core::World G_World;
 
 namespace Core
 {
@@ -19,19 +21,36 @@ namespace Core
 
 	void Entity::Load()
 	{
-		m_DiffusePath = "res/entities/diffuse/" + m_name;
-		m_SpecularPath = "res/entities/specular/" + m_name;
-		m_NormalPath = "res/entities/normal/" + m_name;
+		m_DiffusePath = "res/entities/diffuse/" + m_name + ".png";
+		m_SpecularPath = "res/entities/specular/" + m_name + ".png";
+		m_NormalPath = "res/entities/normal/" + m_name + ".png";
 
 		m_DiffuseID = G_TextureManager.LoadTexture(m_DiffusePath);
 		m_SpecularID = G_TextureManager.LoadTexture(m_SpecularPath);
 		m_NormalID = G_TextureManager.LoadTexture(m_NormalPath);
+
+		//std::cout << "Diffuse: " << m_DiffuseID << std::endl;
+		//std::cout << "Specular: " << m_SpecularID << std::endl;
+		//std::cout << "Normal: " << m_NormalID << std::endl;
 	}
 
 
 	void Entity::Draw()
 	{
-		G_Renderer.DrawEntity(*this);
+		if (isPointInRect(GetBucket(), vector2(-2, -2), G_World.GetBucketLimit()) || IgnoreBuckets)
+		{
+			G_Renderer.DrawEntity(*this);
+		}
+	}
+
+	vector2 Entity::GetBucket()
+	{
+		return GetPosition() / G_World.GetBucketSize();
+	}
+
+	vector2 Entity::GetPosition() const
+	{
+		return m_position;
 	}
 
 	void Entity::GenerateVertices()
@@ -64,5 +83,15 @@ namespace Core
 	void Entity::Update()
 	{
 		GenerateVertices();
+	}
+
+	void Entity::SetSpecularScale(float scale)
+	{
+		SpecularScale = scale;
+	}
+
+	void Entity::SetApplyLightType(int type)
+	{
+		ApplyLightType = type;
 	}
 }

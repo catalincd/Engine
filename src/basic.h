@@ -18,6 +18,8 @@
 #include "utils/filesystem.h"
 #include "utils/errorhandler.h"
 #include "utils/vector2.h"
+#include "utils/vector3.h"
+#include "utils/vector4.h"
 #include "utils/color.h"
 #include "utils/utilString.h"
 #include "utils/math.h"

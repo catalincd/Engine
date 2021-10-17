@@ -20,7 +20,7 @@ namespace Core
 
 		if (it != TextureMap.end())
 		{
-			std::cout << "Already loaded texure: " << path << std::endl;
+			//std::cout << "Already loaded texure: " << path << std::endl;
 			return Textures[(*it).second].TextureID;
 		}
 

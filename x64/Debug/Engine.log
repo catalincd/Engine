@@ -1,10 +1,5 @@
-﻿  main.cpp
+﻿  Entity.cpp
 C:\Users\Wizard\Desktop\Engine\src\utils\math.h(11,27): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Users\Wizard\Desktop\Engine\src\display\window.h(31,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\Wizard\Desktop\Engine\src\display\window.h(31,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Wizard\Desktop\Engine\main.cpp(54,26): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\Wizard\Desktop\Engine\main.cpp(110,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Wizard\Desktop\Engine\main.cpp(110,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Wizard\Desktop\Engine\main.cpp(132,75): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Wizard\Desktop\Engine\main.cpp(132,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Engine.vcxproj -> C:\Users\Wizard\Desktop\Engine\x64\Debug\Engine.exe
