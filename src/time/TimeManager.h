@@ -17,6 +17,8 @@ namespace Core
 
 	uint GetAverageFPS();
 
+	float UnitsPerSecond(float speed);
+
 	class TimeManager
 	{
 		float Factor = 1.0f;

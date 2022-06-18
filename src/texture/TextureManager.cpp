@@ -81,6 +81,8 @@ namespace Core
 		MapPair xpair = MapPair(path, index);
 		TextureMap.insert(xpair);
 
+		std::cout << "Loaded tex " << textureID <<std::endl;
+
 		return textureID;
 	}
 

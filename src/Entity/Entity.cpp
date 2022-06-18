@@ -53,6 +53,16 @@ namespace Core
 		return m_position;
 	}
 
+	void Entity::SetPosition(const vector2& pos)
+	{
+		m_position = pos;
+	}
+	
+	void Entity::AddToPosition(const vector2& pos)
+	{
+		SetPosition(GetPosition() + pos);
+	}
+
 	void Entity::GenerateVertices()
 	{
 		vector2 pivot = m_size * m_origin;
@@ -94,4 +104,31 @@ namespace Core
 	{
 		ApplyLightType = type;
 	}
+
+	void Entity::SetCollisionRadius(float radius)
+	{
+		Radius = radius;
+		Collidable = true;
+	}
+
+	float Entity::GetRadius() const
+	{
+		return Radius;
+	}
+
+	void Entity::SetOrigin(const vector2& origin)
+	{
+		m_origin = origin;
+	}
+
+	bool Entity::IsColliding(const Entity& other)
+	{
+		return (distance(m_position, other.GetPosition()) < Radius + other.GetRadius());
+	}
+
+	void Entity::SetAngle(float angle)
+	{
+		m_angle = angle;
+	}
 }
+

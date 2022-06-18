@@ -17,6 +17,8 @@ namespace Core
 		
 		int ApplyLightType = 0;
 		float SpecularScale = 0.5f;
+		float Radius;
+		bool Collidable = false;
 
 		bool Lit = false;
 		Light* m_light;
@@ -60,6 +62,9 @@ namespace Core
 
 		vector2 GetPosition() const;
 
+		void SetPosition(const vector2& pos);
+		void AddToPosition(const vector2& pos);
+
 		inline EntityVertex GetVertex(int id) const { return m_vertices[id]; }
 
 		void Draw();
@@ -75,6 +80,18 @@ namespace Core
 
 		inline int GetApplyLightType() const { return ApplyLightType; }
 		void SetApplyLightType(int type);
+
+		inline bool isCollidable() const { return Collidable; }
+
+		void SetCollisionRadius(float radius);
+
+		inline float GetRadius() const;
+
+		void SetOrigin(const vector2& origin);
+
+		void SetAngle(float angle);
+
+		bool IsColliding(const Entity& other);
 
 		//Set Origin, Color, ...
 	};

@@ -33,6 +33,8 @@ namespace Core
 
 		void Initialize();
 
+		void DrawSprite(Sprite* sprite);
+
 		void SubmitSprite(Sprite* sprite);
 
 		void Flush();

@@ -116,6 +116,11 @@ namespace Core
 
 		return !(has_neg && has_pos);
 	}
+
+	float distance(vector2 a, vector2 b)
+	{
+		return magnitude(a - b);
+	}
 }
 
 

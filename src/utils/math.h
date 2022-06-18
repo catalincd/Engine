@@ -50,6 +50,8 @@ namespace Core
 
 	float sign(vector2 p1, vector2 p2, vector2 p3);
 
+	float distance(vector2 a, vector2 b);
+
 	class Math
 	{
 	public:

@@ -10,7 +10,7 @@ namespace Core
 	{
 		vector2 BucketSize = vector2(256, 256);
 		vector2 LimitBucket = vector2(9, 6);
-		Color AmbientColor = Color(0.2f, 0.2f, 0.6f, 0.2f);
+		Color AmbientColor = Color(0.8f, 0.8f, 0.8f, 1.0f);
 		Color BackgroundColor = Color(0x333333FF);
 
 	public:

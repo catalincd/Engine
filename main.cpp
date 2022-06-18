@@ -1,18 +1,7 @@
-#include "src/basic.h"
-#include "src/display/window.h"
-#include "src/shaders/shader.h"
-#include "src/shaders/ShaderManager.h"
-#include "src/text/FontManager.h"
-#include "src/Renderer/SpriteRenderer.h"
-#include "src/Renderer/Renderer.h"
-#include "src/time/TimeManager.h"
-#include "src/utils/utilString.h"
-#include "src/text/Font.h"
-#include "src/text/Text.h"
-#include "src/text/TextRenderer.h"
-#include "src/Input/Input.h"
-#include "src/GlobalController/GlobalController.h"
-#include "src/UI/Button.h"
+
+
+
+#include "game/Game.h"
 
 using namespace Core;
 
@@ -24,6 +13,8 @@ extern Renderer G_Renderer;
 extern TextRenderer G_TextRenderer;
 extern TimeManager G_TimeManager;
 extern InputManager G_Input;
+extern Gui G_Gui;
+extern Game GAME;
 
 Sprite* sprite;
 Sprite* sprite2;
@@ -47,9 +38,7 @@ void BasicUpdate()
     if (G_Input.GetLeftMouse() == KS_PRESS)
         std::cout << "MOUSE PRESS " << (x++) << std::endl;
 
-    sprite->Draw();
-    sprite2->Draw();   
-    sprite3->Draw();
+    
 
     sprite2->SetAngle(90 * glfwGetTime());
     
@@ -61,43 +50,24 @@ void BasicUpdate()
     avgFps = int(float(avgFps * frames + fps) / float(frames + 1));
     frames++;
 
-    
-    
-    
-    if (sprite3->Pressed())
-    {
-        std::cout << "SPRITE 3 PRESSED! \n";
-        sprite3->SetColor(0xFFFFFF77);
-    }
-    else sprite3->SetColor(0xFFFFFFFF);
+ 
    
     G_Renderer.Update();
     
-
    
-   
-
-
-    for (int i = 0; i < eNUM; i++)
-    {
-        entities[i]->Update();
-        entities[i]->Draw();
-    }
-    
     for (int i = 0; i < NUM; i++)
     {
         text[i]->SetText("FPS: " + std::to_string(GetFPSRate()));
-        //text[i]->SetText("FPS: " + std::to_string(avgFps));
-        text[i]->Draw();
+		text[i]->Draw();
     }
 
-    G_SpriteRenderer.Flush();
+	GAME.Update();
 }
 
 
 int main(void)
 {
-    G_Window.Initialize("Title", 1280, 720);
+    G_Window.Initialize("Space Shooter", 480, 720);
     G_ShaderManager.LoadShaders();
 
     G_SpriteRenderer.Initialize();
@@ -140,7 +110,8 @@ int main(void)
    
 
     G_Window.AddFunction(BasicUpdate);
-    ///endof remove
+	GAME.Initialize();
+
 
    
     G_Window.Start();

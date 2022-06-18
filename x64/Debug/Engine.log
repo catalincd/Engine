@@ -1,5 +1,23 @@
-﻿  Entity.cpp
-C:\Users\Wizard\Desktop\Engine\src\utils\math.h(11,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\Wizard\Desktop\Engine\src\display\window.h(31,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Wizard\Desktop\Engine\src\display\window.h(31,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Engine.vcxproj -> C:\Users\Wizard\Desktop\Engine\x64\Debug\Engine.exe
+﻿  AsteroidManager.cpp
+c:\users\wizard\documents\engine\src\utils\math.h(11): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\wizard\documents\engine\src\display\window.h(31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\wizard\documents\engine\game\asteroidmanager.h(23): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\wizard\documents\engine\game\asteroidmanager.h(37): warning C4018: '>': signed/unsigned mismatch
+c:\users\wizard\documents\engine\game\asteroidmanager.h(41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\wizard\documents\engine\game\asteroidmanager.h(45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  BulletManager.cpp
+c:\users\wizard\documents\engine\src\utils\math.h(11): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\wizard\documents\engine\src\display\window.h(31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\wizard\documents\engine\game\asteroidmanager.h(23): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\wizard\documents\engine\game\asteroidmanager.h(37): warning C4018: '>': signed/unsigned mismatch
+c:\users\wizard\documents\engine\game\asteroidmanager.h(41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\wizard\documents\engine\game\asteroidmanager.h(45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Game.cpp
+c:\users\wizard\documents\engine\src\utils\math.h(11): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\wizard\documents\engine\src\display\window.h(31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\wizard\documents\engine\game\asteroidmanager.h(23): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\wizard\documents\engine\game\asteroidmanager.h(37): warning C4018: '>': signed/unsigned mismatch
+c:\users\wizard\documents\engine\game\asteroidmanager.h(41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\wizard\documents\engine\game\asteroidmanager.h(45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  Engine.vcxproj -> C:\Users\Wizard\Documents\Engine\x64\Debug\Engine.exe
