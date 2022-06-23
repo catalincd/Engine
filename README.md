@@ -49,7 +49,7 @@ public:
     {
         sampleSprite = new Sprite("sprite.png", vector2(100, 100), vector2(32,32), Color(0xFFFFFFFF), 0);
         sampleSprite->Load();
-  }
+    }
 
     void Update()
     {
