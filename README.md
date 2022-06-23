@@ -19,23 +19,23 @@
 - Window Management
 
 ## Base Classes
-- World
--- Entity
--- Light
-
-- UI
--- Sprite
--- Button
--- Text
-
-- Singletons
--- G_Window
--- G_Renderer
--- G_SpriteRenderer
--- G_TextRenderer
--- G_FontManager
--- G_Input
--- G_SoundManager
+  - World
+    - Entity
+    - Light
+  
+  - UI
+    - Sprite
+    - Button
+    - Text
+  
+  - Singletons
+    - G_Window
+    - G_Renderer
+    - G_SpriteRenderer
+    - G_TextRenderer
+    - G_FontManager
+    - G_Input
+    - G_SoundManager
 
 ## Basic Usage
 The Game class has an Initialize() and Update() function which is where execution begins. 
