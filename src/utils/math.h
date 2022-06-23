@@ -22,6 +22,10 @@ namespace Core
 
 	float max(float a, float b);
 
+	int max(int a, int b);
+
+	int min(int a, int b);
+
 	bool isPointInRect(const vector2& p, const vector2& pos, const vector2& size, const vector2& origin);
 
 	bool isPointInRect(const vector2& p, const vector2& pos, const vector2& size);

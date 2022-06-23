@@ -28,12 +28,10 @@ namespace Core
 		int TextureID[1024];
 		int TextureArray[1024];
 		GLint samplersLocation;
-		
+
 	public:
 
 		void Initialize();
-
-		void DrawSprite(Sprite* sprite);
 
 		void SubmitSprite(Sprite* sprite);
 

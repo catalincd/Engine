@@ -9,6 +9,8 @@ public:
 
 	void Shoot(const vector2& pos);
 
+	void Initialize();
+
 	void Update();
 };
 

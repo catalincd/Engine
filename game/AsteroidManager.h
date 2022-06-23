@@ -1,12 +1,15 @@
 #pragma once
 #include "../Engine.h"
+#include "StateManager.h"
+
+extern StateManager stateManager;
 
 class AsteroidManager
 {
 	std::vector<Core::Entity*> asteroids;
 	int lastAdded = 0;
-	int stride = 800;
-	float speed = 120;
+	int stride = 1000;
+	float speed = 150;
 
 	int getPositionX()
 	{
@@ -29,10 +32,15 @@ public:
 
 	}
 
+	void RemoveAll()
+	{
+		asteroids.clear();
+	}
+
 	void Update()
 	{
-		stride = 800 - (int(float(Core::min(Core::GetTime(), 5000)) / 5000) * 300);
-		speed = 120 * (float(Core::min(Core::GetTime(), 5000) / 5000) + 1.0f);
+		//stride = 800 - (int(float(min(Core::GetTime(), 5000)) / 5000) * 300);
+		//speed = 120 * (float(min(Core::GetTime(), 5000) / 5000) + 1.0f);
 
 		if (Core::GetTime() - lastAdded > stride)
 		{
@@ -46,7 +54,7 @@ public:
 			asteroids.push_back(asteroid);
 		}
 
-		float currentSpeed = Core::UnitsPerSecond(speed);
+		float currentSpeed = Core::UnitsPerSecond(speed) * stateManager.GetTimeScale();
 		for (int i = 0;i < asteroids.size();i++)
 		{
 			asteroids[i]->AddToPosition(vector2(0, currentSpeed));

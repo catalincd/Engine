@@ -1,1 +1,2 @@
 C:\Users\Wizard\Desktop\Engine\x64\Debug\Engine.exe
+C:\Users\Wizard\Documents\Engine\x64\Debug\Engine.exe

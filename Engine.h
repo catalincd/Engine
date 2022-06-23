@@ -16,3 +16,4 @@
 #include "src/UI/Gui.h"
 #include "src/utils/vector2.h"
 #include "src/World/World.h"
+#include "src/sound/SoundManager.h"

@@ -6,7 +6,7 @@ extern Core::InputManager G_Input;
 
 namespace Core
 {
-	void Button::Draw()
+	void Button::DrawButton()
 	{
 		Sprite::Draw();
 		Update();
@@ -16,6 +16,9 @@ namespace Core
 	{
 		vector2 p = G_Input.GetCursorPosition();
 		bool isCursorInButton = (isPointInTriangle(p, topLeft, topRight, bottomRight) || isPointInTriangle(p, bottomRight, bottomLeft, topLeft));
+
+		isPressed = false;
+		isReleased = false;
 
 		if (isCursorInButton)
 		{

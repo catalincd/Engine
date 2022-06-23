@@ -1,7 +1,6 @@
 #include "SpriteRenderer.h"
 #include "../basic.h"
 
-bool FLUSH_DISABLED = true;
 
 extern Core::Window G_Window;
 extern Core::ShaderManager G_ShaderManager;
@@ -29,8 +28,10 @@ namespace Core
 
 		GLuint program = G_ShaderManager.GetShaderID("default");
 		glUseProgram(program);
-		samplersLocation = glGetUniformLocation(program, "u_Texture");
-		
+		samplersLocation = glGetUniformLocation(program, "u_Textures");
+
+		int unitsLocation = glGetUniformLocation(program, "u_MaxUnitsNum");
+		glUniform1iv(unitsLocation, MaxBatchSize, TextureArray);
 
 		SpritesNum = 0;
 		int vertexSize = sizeof(float) * 10;
@@ -56,7 +57,7 @@ namespace Core
 
 		glGenBuffers(1, &VBO);
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		 
+
 		glGenBuffers(1, &IBO);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_DYNAMIC_DRAW);
@@ -75,49 +76,8 @@ namespace Core
 	}
 
 
-
-	void SpriteRenderer::DrawSprite(Sprite* sprite)
-	{
-		return;
-		mat4x4 m, p, mvp;
-		vector2 WindowSize = G_Window.GetWindowSize();
-
-		UIVertex x_vertices[4];
-
-		for (int i = 0; i < 4; i++)
-		{
-			x_vertices[i] = sprite->GetVertex(i);
-		}
-
-		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, MAX_VERTICES_BYTES_SIZE, x_vertices, GL_DYNAMIC_DRAW);
-
-		//glViewport(0, 0, WindowSize.x, WindowSize.y);
-		glViewport(0, 0, 480, 720);
-
-
-
-		glUseProgram(G_ShaderManager.GetShaderID("default"));
-
-		G_ShaderManager.SetOrthographicMatrix("default", 0.0f, WindowSize.x, WindowSize.y, 0.0f, 1.0f, -1.0f);
-
-
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, sprite->GetTextureID());
-
-		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6 , GL_UNSIGNED_SHORT, 0);
-	}
-
-
 	void SpriteRenderer::SubmitSprite(Sprite* sprite)
 	{
-		if (FLUSH_DISABLED)
-		{
-			SpritesNum = 0;
-			return;
-		}
-
 		int offset = SpritesNum * 4;
 
 		TextureID[SpritesNum] = sprite->GetTextureID();
@@ -125,22 +85,20 @@ namespace Core
 		for (int i = 0; i < 4; i++)
 		{
 			m_vertices[offset + i] = (sprite->GetVertex(i));
-			m_vertices[offset + i].ti = 4;
+			m_vertices[offset + i].ti = SpritesNum;
 		}
-		
+
 		SpritesNum++;
+
+
+		if (SpritesNum == MaxBatchSize)
+			Flush();
 	}
 
-	
+
 
 	void SpriteRenderer::Flush()
 	{
-		if (FLUSH_DISABLED)
-		{
-			SpritesNum = 0;
-			return;
-		}
-
 		mat4x4 m, p, mvp;
 		vector2 WindowSize = G_Window.GetWindowSize();
 
@@ -148,20 +106,17 @@ namespace Core
 		glBufferData(GL_ARRAY_BUFFER, MAX_VERTICES_BYTES_SIZE, m_vertices, GL_DYNAMIC_DRAW);
 
 		glViewport(0, 0, WindowSize.x, WindowSize.y);
-		
 
-		
-		//glUseProgram(G_ShaderManager.GetShaderID("default"));
-		glUseProgram(2);
-		
+		glUseProgram(G_ShaderManager.GetShaderID("default"));
+
 		G_ShaderManager.SetOrthographicMatrix("default", 0.0f, WindowSize.x, WindowSize.y, 0.0f, 1.0f, -1.0f);
-		
-		glUniform1iv(samplersLocation, 32, TextureArray);
-		
+
+		glUniform1iv(samplersLocation, MaxBatchSize, TextureArray);
+
 		for (int i = 0; i < SpritesNum; i++)
 		{
 			glActiveTexture(GL_TEXTURE0 + i);
-			glBindTexture(GL_TEXTURE_2D, 4);
+			glBindTexture(GL_TEXTURE_2D, TextureID[i]);
 		}
 
 		glBindVertexArray(VAO);

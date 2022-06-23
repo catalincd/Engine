@@ -67,7 +67,7 @@ namespace Core
 	void Sprite::Draw()
 	{
 		GenerateVertices();
-		G_SpriteRenderer.DrawSprite(this);
+		G_SpriteRenderer.SubmitSprite(this);
 	}
 
 	void Sprite::Draw(vector2 position, vector2 size, Color color = Color(0xFFFFFFFF), float angle = 0)
@@ -77,7 +77,8 @@ namespace Core
 		m_color = color;
 		m_angle = angle;
 
-		Draw();
+		GenerateVertices();
+		G_SpriteRenderer.SubmitSprite(this);
 	}
 
 	void Sprite::SetOrigin(vector2 origin)

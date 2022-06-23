@@ -1,12 +1,9 @@
 #pragma once
 #include "../Engine.h"
-#include "Ship.h"
+#include "GameScene.h"
 
 class Game
 {
-	Ship ship;
-	Core::Entity* background;
-
 public:
 	void Initialize();
 

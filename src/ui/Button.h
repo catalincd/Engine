@@ -13,7 +13,7 @@ namespace Core
 	public:
 		using Sprite::Sprite;
 
-		void Draw();
+		void DrawButton();
 		void Update();
 
 		bool Pressed();

@@ -69,7 +69,7 @@ namespace Core
 	void TimeManager::Sleep()
 	{
 		const float FrameTime = 1000.0f * (glfwGetTime() - CurrentFrameStartTime);
-		const float delta = min(30, (1000.0f / TargetFPS) - FrameTime);
+		const float delta = min(30.0f, (1000.0f / TargetFPS) - FrameTime);
 		CurrentSleepTime = static_cast<uint>(500.0f * delta);
 
 		if (CurrentSleepTime > 0 && CurrentSleepTime < 30000)

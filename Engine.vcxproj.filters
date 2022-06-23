@@ -135,6 +135,21 @@
     <ClCompile Include="game\AsteroidManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="game\GameUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sound\SoundManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\StateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\MenuScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\linmath.h">
@@ -258,6 +273,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game\AsteroidManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sound\SoundManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\StateManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\MenuScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

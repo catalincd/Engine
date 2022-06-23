@@ -18,6 +18,16 @@ namespace Core
 		return a > b ? a : b;
 	}
 
+	int max(int a, int b)
+	{
+		return a > b ? a : b;
+	}
+
+	int min(int a, int b)
+	{
+		return a < b ? a : b;
+	}
+
 	bool isPointInRect(const vector2& p, const vector2& pos, const vector2& size, const vector2& origin)
 	{
 		vector2 posRelative = vector2(pos.x - size.x * origin.x, pos.y - size.y * origin.y);

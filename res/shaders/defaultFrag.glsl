@@ -5,7 +5,7 @@ uniform float testUniform = 1;
 uniform float brightness = 0.0f;
 uniform float contrast = 1.0f;
 uniform float saturation = 1.0f;
-uniform sampler2D u_Texture;
+uniform sampler2D u_Textures[gl_MaxTextureImageUnits];
 in float TextureID;
 in vec2 TexPos;
 in vec4 Color;
@@ -54,7 +54,7 @@ void main()
 {
 	int index = int(TextureID);
 
-	vec4 texColor = texture(u_Texture, TexPos);
+	vec4 texColor = texture(u_Textures[index], TexPos);
 
-	gl_FragColor = brightnessMatrix(brightness) * contrastMatrix(contrast) * saturationMatrix(saturation) * vec4(mix(texColor.xyz, Color.xyz, 0.5), texColor.a * Color.a);
+	gl_FragColor = brightnessMatrix(brightness) * contrastMatrix(contrast) * saturationMatrix(saturation) * vec4(texColor.xyz * Color.xyz, texColor.a * Color.a);
 };
